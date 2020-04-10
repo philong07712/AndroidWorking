@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/custom_rectangle_item">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="5dp">
+
+        <ImageView
+            android:id="@+id/imageView_td_icon"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_weight="0"
+            android:padding="3dp"
+            app:srcCompat="@drawable/sun" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/textView_day"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:fontFamily="@font/roboto_condensed_regular"
+                android:text="Day"
+                android:textColor="@color/colorTextDark"
+                android:textSize="24sp" />
+
+            <TextView
+                android:id="@+id/textView_itemKind"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:fontFamily="@font/roboto_condensed_regular"
+                android:text="weather kind"
+                android:textColor="@color/colorText"
+                android:textSize="18sp" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/textView_maxTemp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="0"
+            android:fontFamily="@font/roboto_condensed_regular"
+            android:padding="5dp"
+            android:text="maxTemp"
+            android:textColor="@color/colorTextDark"
+            android:textSize="30sp" />
+
+        <TextView
+            android:id="@+id/textView2_lowTemp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="0"
+            android:fontFamily="@font/roboto_condensed_regular"
+            android:lineSpacingExtra="0sp"
+            android:padding="5dp"
+            android:text="lowTemp"
+            android:textColor="@color/colorText"
+            android:textSize="30sp" />
+    </LinearLayout>
+</RelativeLayout>

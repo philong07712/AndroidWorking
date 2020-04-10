@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#2196F3</color> // Blue 50 500
+    <color name="colorPrimaryDark">#1976D2</color> // Blue 50 700
+    <color name="colorAccent">#c8d6e5</color>
+    <color name="colorTopboard">#90CAF9</color> // Blue 50 A400
+    <color name="colorBackgroundList">#FFFFFF</color>
+    <color name="colorTextDark">#000000</color>
+    <color name="colorText">#757575</color>
+    <color name="colorTextBoard">#FFFFFF</color>
+    <color name="colorBoardDetail">#90A4AE</color>
+</resources>
