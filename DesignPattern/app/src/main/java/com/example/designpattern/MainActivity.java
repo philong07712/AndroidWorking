@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 
 import com.example.designpattern.DecoratePattern.MainDecoratePattern;
+import com.example.designpattern.FactoryPattern.MainFactoryPattern;
 import com.example.designpattern.ObserverPattern.MainObserverPattern;
 import com.example.designpattern.ObserverPattern.Observerable.Observerable;
 import com.example.designpattern.StrategyPattern.MainStrategyPattern;
@@ -17,7 +18,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         // using variable for experiment purpose
-        IPattern pattern = new MainDecoratePattern();
+        IPattern pattern = new MainFactoryPattern();
         pattern.run();
     }
 }
