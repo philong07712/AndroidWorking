@@ -1,5 +1,6 @@
 package com.example.designpattern.FactoryPattern;
 
+import com.example.designpattern.FactoryPattern.Animal.Animals.Cat;
 import com.example.designpattern.FactoryPattern.Animal.Animals.Fox;
 import com.example.designpattern.FactoryPattern.Animal.IAnimal;
 import com.example.designpattern.FactoryPattern.Factory.BalanceFactory;
@@ -14,7 +15,6 @@ public class MainFactoryPattern implements IPattern {
     public void run() {
         BalanceFactory factory = new BalanceFactory();
         animals.add(factory.createAnimal());
-
         display();
     }
     private void display()
