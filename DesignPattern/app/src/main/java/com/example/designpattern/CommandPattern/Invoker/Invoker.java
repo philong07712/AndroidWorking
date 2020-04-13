@@ -34,4 +34,12 @@ public class Invoker {
     {
         this.onButton.execute();
     }
+
+    public void undo()
+    {
+        upButton.unexecute();
+        downButton.unexecute();
+        offButton.unexecute();
+        onButton.unexecute();
+    }
 }

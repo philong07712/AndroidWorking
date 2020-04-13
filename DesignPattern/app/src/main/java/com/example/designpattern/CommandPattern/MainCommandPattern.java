@@ -17,5 +17,7 @@ public class MainCommandPattern implements IPattern {
         remote.downClick();
         remote.offClick();
         remote.onClick();
+
+        remote.onClick();
     }
 }
