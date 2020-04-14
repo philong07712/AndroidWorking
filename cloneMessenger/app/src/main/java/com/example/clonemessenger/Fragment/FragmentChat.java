@@ -16,8 +16,12 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.clonemessenger.Adapter.ChatAdapter;
 import com.example.clonemessenger.Adapter.NewsAdapter;
+import com.example.clonemessenger.Factory.IFactory;
+import com.example.clonemessenger.Factory.RandomFactory;
 import com.example.clonemessenger.Model.Friend;
+import com.example.clonemessenger.Model.IUserFacade;
 import com.example.clonemessenger.Model.User;
+import com.example.clonemessenger.Model.UserFacade;
 import com.example.clonemessenger.R;
 
 import java.lang.reflect.Array;
@@ -33,6 +37,9 @@ public class FragmentChat extends Fragment {
     ChatAdapter chatAdapter;
     Context mContext;
     Friend friends = new Friend();
+    // New models
+    List<IUserFacade> listOfUsers = new ArrayList<>();
+    IFactory factory = new RandomFactory();
     public FragmentChat() {
     }
     @Nullable
@@ -41,6 +48,7 @@ public class FragmentChat extends Fragment {
         mContext = container.getContext();
         v = inflater.inflate(R.layout.chat_fragment, container, false);
         // init users and friend
+        initMockUser();
         list = friends.getUserList();
         list.add(0, new User("Your Story","", R.drawable.plus, false, 0));
         chatList = new ArrayList<>(list);
@@ -50,7 +58,7 @@ public class FragmentChat extends Fragment {
         rv_chat = v.findViewById(R.id.rv_chat);
 
         // set up news recycler view
-        newsAdapter = new NewsAdapter(list, mContext);
+        newsAdapter = new NewsAdapter(this.listOfUsers, mContext);
         rv_news.setAdapter(newsAdapter);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false);
         rv_news.setLayoutManager(linearLayoutManager);
@@ -65,6 +73,12 @@ public class FragmentChat extends Fragment {
         return v;
     }
 
-
+    private void initMockUser()
+    {
+        for (int i = 0; i < 10; i++)
+        {
+            listOfUsers.add(new UserFacade(factory.initHuman(), factory.initNews()));
+        }
+    }
 
 }

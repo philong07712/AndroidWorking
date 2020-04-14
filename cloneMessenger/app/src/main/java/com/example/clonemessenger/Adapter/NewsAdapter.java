@@ -12,16 +12,19 @@ import android.widget.ToggleButton;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.example.clonemessenger.Model.IUserFacade;
+import com.example.clonemessenger.Model.News.News;
 import com.example.clonemessenger.Model.User;
 import com.example.clonemessenger.R;
 
 import java.util.List;
 
 public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.ViewHolder> {
-    List<User> list;
+    List<IUserFacade> list;
     Context mContext;
 
-    public NewsAdapter(List<User> list, Context mContext) {
+    public NewsAdapter(List<IUserFacade> list, Context mContext) {
         this.list = list;
         this.mContext = mContext;
     }
@@ -35,15 +38,15 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.ViewHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        holder.tv_name.setText(list.get(position).getName());
-        holder.img.setImageResource(list.get(position).getImg());
+        holder.tv_name.setText(list.get(position).getHuman().getShortName());
+        holder.img.setImageResource(list.get(position).getHuman().getAvatar());
         holder.img_online.setVisibility(getVisibility(position));
-        holder.news_read.setImageResource(list.get(position).getReadImg());
+        holder.news_read.setImageResource(getNewsImg(position));
     }
 
     private int getVisibility(int position)
     {
-        if (list.get(position).isOnline())
+        if (list.get(position).getHuman().isOnline())
         {
             return View.VISIBLE;
         }
@@ -53,6 +56,19 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.ViewHolder> {
         }
     }
 
+    private int getNewsImg(int position)
+    {
+        int readState = this.list.get(position).getNews().getReadState();
+        switch (readState)
+        {
+            case News.READ:
+                return R.drawable.news_true;
+            case News.UNREAD:
+                return R.drawable.news_false;
+            default:
+                return 0;
+        }
+    }
     @Override
     public int getItemCount() {
         return list.size();
