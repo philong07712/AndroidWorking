@@ -1,7 +1,9 @@
 package com.example.clonemessenger.Fragment;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,17 +20,24 @@ import com.example.clonemessenger.Adapter.ChatAdapter;
 import com.example.clonemessenger.Adapter.NewsAdapter;
 import com.example.clonemessenger.Factory.IFactory;
 import com.example.clonemessenger.Factory.RandomFactory;
+import com.example.clonemessenger.MainActivity;
 import com.example.clonemessenger.Model.Friend;
 import com.example.clonemessenger.Model.IUserFacade;
 import com.example.clonemessenger.Model.User;
 import com.example.clonemessenger.Model.UserFacade;
+import com.example.clonemessenger.MyApplication;
 import com.example.clonemessenger.R;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 
 import java.lang.reflect.Array;
+import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
 
 public class FragmentChat extends Fragment {
+    private final String TAG = "FragmentChatTag";
+    private static final String KEY_NEWS = "User_News";
     View v;
     RecyclerView rv_news, rv_chat;
     List<User> list;
@@ -38,8 +47,7 @@ public class FragmentChat extends Fragment {
     Context mContext;
     Friend friends = new Friend();
     // New models
-    List<IUserFacade> listOfUsers = new ArrayList<>();
-    IFactory factory = new RandomFactory();
+    List<UserFacade> listOfUsers;
     public FragmentChat() {
     }
     @Nullable
@@ -48,7 +56,7 @@ public class FragmentChat extends Fragment {
         mContext = container.getContext();
         v = inflater.inflate(R.layout.chat_fragment, container, false);
         // init users and friend
-        initMockUser();
+        this.listOfUsers = new ArrayList<>(MyApplication.getInstance().getUserList());
         list = friends.getUserList();
         list.add(0, new User("Your Story","", R.drawable.plus, false, 0));
         chatList = new ArrayList<>(list);
@@ -65,7 +73,7 @@ public class FragmentChat extends Fragment {
         rv_news.setNestedScrollingEnabled(false);
         // set up chat recycler view
 
-        chatAdapter = new ChatAdapter(chatList, mContext);
+        chatAdapter = new ChatAdapter(listOfUsers, mContext);
         rv_chat.setAdapter(chatAdapter);
         LinearLayoutManager linearLayoutManager1 = new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false);
         rv_chat.setLayoutManager(linearLayoutManager1);
@@ -73,12 +81,9 @@ public class FragmentChat extends Fragment {
         return v;
     }
 
-    private void initMockUser()
-    {
-        for (int i = 0; i < 10; i++)
-        {
-            listOfUsers.add(new UserFacade(factory.initHuman(), factory.initNews()));
-        }
+    @Override
+    public void onSaveInstanceState(@NonNull Bundle outState) {
+        super.onSaveInstanceState(outState);
     }
 
 }

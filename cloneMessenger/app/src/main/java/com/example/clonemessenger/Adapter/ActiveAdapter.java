@@ -13,15 +13,16 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.clonemessenger.Model.User;
+import com.example.clonemessenger.Model.UserFacade;
 import com.example.clonemessenger.R;
 
 import java.util.List;
 
 public class ActiveAdapter extends RecyclerView.Adapter<ActiveAdapter.ViewHolder> {
     Context mContext;
-    List<User> list;
+    List<UserFacade> list;
 
-    public ActiveAdapter(Context mContext, List<User> users) {
+    public ActiveAdapter(Context mContext, List<UserFacade> users) {
         this.mContext = mContext;
         this.list = users;
     }
@@ -35,9 +36,9 @@ public class ActiveAdapter extends RecyclerView.Adapter<ActiveAdapter.ViewHolder
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        holder.active_img.setImageResource(list.get(position).getImg());
+        holder.active_img.setImageResource(list.get(position).getHuman().getAvatar());
         holder.active_online.setVisibility(getVisibility(position));
-        holder.active_name.setText(list.get(position).getFullName());
+        holder.active_name.setText(list.get(position).getHuman().getName());
     }
 
     @Override
@@ -46,7 +47,7 @@ public class ActiveAdapter extends RecyclerView.Adapter<ActiveAdapter.ViewHolder
     }
     private int getVisibility(int position)
     {
-        if (list.get(position).isOnline())
+        if (list.get(position).getHuman().isOnline())
         {
             return View.VISIBLE;
         }

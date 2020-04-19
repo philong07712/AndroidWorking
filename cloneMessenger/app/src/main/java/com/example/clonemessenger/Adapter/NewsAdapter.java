@@ -16,15 +16,16 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.clonemessenger.Model.IUserFacade;
 import com.example.clonemessenger.Model.News.News;
 import com.example.clonemessenger.Model.User;
+import com.example.clonemessenger.Model.UserFacade;
 import com.example.clonemessenger.R;
 
 import java.util.List;
 
 public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.ViewHolder> {
-    List<IUserFacade> list;
+    List<UserFacade> list;
     Context mContext;
 
-    public NewsAdapter(List<IUserFacade> list, Context mContext) {
+    public NewsAdapter(List<UserFacade> list, Context mContext) {
         this.list = list;
         this.mContext = mContext;
     }
@@ -88,4 +89,6 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.ViewHolder> {
             news_read = (ImageView) itemView.findViewById(R.id.news_read);
         }
     }
+
+
 }

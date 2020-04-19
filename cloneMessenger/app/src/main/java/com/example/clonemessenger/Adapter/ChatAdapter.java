@@ -13,15 +13,16 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.clonemessenger.Model.User;
+import com.example.clonemessenger.Model.UserFacade;
 import com.example.clonemessenger.R;
 
 import java.util.List;
 
 public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.ViewHolder> {
-    List<User> list;
+    List<UserFacade> list;
     Context mContext;
 
-    public ChatAdapter(List<User> list, Context mContext) {
+    public ChatAdapter(List<UserFacade> list, Context mContext) {
         this.list = list;
         this.mContext = mContext;
     }
@@ -35,9 +36,9 @@ public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.ViewHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        holder.tv_name.setText(list.get(position).getFullName());
-        holder.tv_content.setText(list.get(position).getFullName() + ": Mock content");
-        holder.img.setImageResource(list.get(position).getImg());
+        holder.tv_name.setText(list.get(position).getHuman().getName());
+        holder.tv_content.setText(list.get(position).getHuman().getName() + ": Mock content");
+        holder.img.setImageResource(list.get(position).getHuman().getAvatar());
         holder.online_btn.setVisibility(getVisibility(position));
     }
 
@@ -47,7 +48,7 @@ public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.ViewHolder> {
     }
     private int getVisibility(int position)
     {
-        if (list.get(position).isOnline())
+        if (list.get(position).getHuman().isOnline())
         {
             return View.VISIBLE;
         }

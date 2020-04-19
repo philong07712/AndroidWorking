@@ -1,5 +1,7 @@
 package com.example.clonemessenger.Model;
 
+import android.os.Parcelable;
+
 import com.example.clonemessenger.Model.News.INews;
 
 public interface IUserFacade {

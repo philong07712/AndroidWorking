@@ -15,6 +15,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.clonemessenger.Adapter.ActiveAdapter;
 import com.example.clonemessenger.Model.Friend;
 import com.example.clonemessenger.Model.User;
+import com.example.clonemessenger.Model.UserFacade;
+import com.example.clonemessenger.MyApplication;
 import com.example.clonemessenger.R;
 
 import java.util.ArrayList;
@@ -23,21 +25,22 @@ import java.util.List;
 public class FragmentActive extends Fragment {
     public FragmentActive()
     {
-
     }
+
     Context mContext;
     RecyclerView rv;
+    List<UserFacade> list;
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         mContext = container.getContext();
         View v = inflater.inflate(R.layout.active_fragment, container, false);
+        list = new ArrayList<>(MyApplication.getInstance().getUserList());
         rv = (RecyclerView) v.findViewById(R.id.rv_active);
-        Friend friend = new Friend();
-        List<User> list = friend.getUserList();
         ActiveAdapter adapter = new ActiveAdapter(mContext, list);
         rv.setAdapter(adapter);
         rv.setLayoutManager(new LinearLayoutManager(getActivity()));
         return v;
     }
+
 }

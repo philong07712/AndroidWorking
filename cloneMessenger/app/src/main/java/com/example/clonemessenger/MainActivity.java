@@ -16,6 +16,7 @@ import com.example.clonemessenger.Fragment.FragmentEveryone;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class MainActivity extends AppCompatActivity {
+    public static final String KEY_DATA = "Data";
     BottomNavigationView bottomNav;
     @Override
     protected void onCreate(Bundle savedInstanceState) {

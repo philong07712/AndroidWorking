@@ -41,6 +41,7 @@ public class Human implements IHuman {
 
     @Override
     public String getShortName() {
-        return this.name;
+        String shortName = this.name.substring(0, this.name.indexOf(" "));
+        return shortName;
     }
 }

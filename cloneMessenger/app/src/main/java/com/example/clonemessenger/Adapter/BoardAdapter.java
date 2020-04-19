@@ -14,15 +14,17 @@ import androidx.annotation.RequiresApi;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.clonemessenger.Model.BoardItem;
+import com.example.clonemessenger.Model.User;
+import com.example.clonemessenger.Model.UserFacade;
 import com.example.clonemessenger.R;
 
 import java.util.List;
 
 public class BoardAdapter extends RecyclerView.Adapter<BoardAdapter.ViewHolder> {
     Context mContext;
-    List<BoardItem> list;
+    List<UserFacade> list;
 
-    public BoardAdapter(Context mContext, List<BoardItem> list) {
+    public BoardAdapter(Context mContext, List<UserFacade> list) {
         this.mContext = mContext;
         this.list = list;
     }
@@ -36,10 +38,10 @@ public class BoardAdapter extends RecyclerView.Adapter<BoardAdapter.ViewHolder> 
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        holder.board_img.setImageResource(list.get(position).getUserImage());
-        holder.board_avatar.setImageResource(list.get(position).getImg());
+        holder.board_img.setImageResource(list.get(position).getNews().getNewsImg());
+        holder.board_avatar.setImageResource(list.get(position).getHuman().getAvatar());
         holder.board_news.setImageResource(R.drawable.style_news_trans_true);
-        holder.board_name.setText(list.get(position).getFullName());
+        holder.board_name.setText(list.get(position).getHuman().getName());
     }
     @Override
     public int getItemCount() {
